@@ -76,4 +76,4 @@ def index():
 def logout():
     session.pop("logged_in", None)
     flash("Çıkış yapıldı", "info")
-    return redirect(url_for("main.index"))
+    return redirect("/koy")
