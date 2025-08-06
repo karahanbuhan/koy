@@ -1,0 +1,8 @@
+# Code formatting and quality
+black==24.3.0
+isort==5.13.2
+flake8==7.0.0
+mypy==1.10.0
+
+# Type support for Flask
+types-Flask==1.1.6
