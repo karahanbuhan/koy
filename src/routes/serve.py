@@ -1,12 +1,8 @@
 import os
 from flask import Blueprint, current_app, send_from_directory, abort
+from utils import is_image
 
 serve_bp = Blueprint("serve", __name__)
-
-
-def is_image(filename):
-    ext = filename.rsplit(".", 1)[-1].lower()
-    return ext in {"png", "jpg", "jpeg", "gif", "webp"}
 
 
 @serve_bp.route("/i/<path:filename>")

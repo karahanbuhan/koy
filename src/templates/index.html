@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Koy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pico.min.css') }}">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: var(--pico-background-color);
+        }
+
+        main.container {
+            width: 100%;
+            max-width: 720px;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        form {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        input[type="file"] {
+            display: block;
+            margin: auto;
+            text-align: center;
+            padding: 0.6rem;
+            font-size: 0.95rem;
+            color: var(--pico-color, white);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #d946ef, #6366f1);
+            /* mor → mavi */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+
+        article {
+            background-color: var(--pico-card-background-color, #1e1e1e);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            font-size: 0.9rem;
+        }
+
+        a[target="_blank"] {
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            font-size: 0.85rem;
+            display: inline-block;
+        }
+
+        footer {
+            margin-top: 3rem;
+            font-size: 0.8rem;
+        }
+    </style>
+
+</head>
+
+<script>
+    function showFilename(input) {
+        const name = input.files[0]?.name || "";
+        document.getElementById("filename").textContent = name;
+    }
+</script>
+
+
+<body>
+    <main class="container">
+        <h1>
+            <span class="gradient-text">Koy</span>
+        </h1>
+
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert" data-theme="{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {% if not logged_in %}
+        <form method="post">
+            <input type="text" name="username" placeholder="Kullanıcı adı" required>
+            <input type="password" name="password" placeholder="Şifre" required>
+            <button type="submit">Giriş Yap</button>
+        </form>
+        {% else %}
+        <form method="post" enctype="multipart/form-data">
+            <input id="file-upload" type="file" name="file" required hidden onchange="showFilename(this)">
+            <div id="filename" style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--pico-muted-color);"></div>
+
+            <label for="file-upload">Dosya Seç</label>
+            <button type="submit">Koy</button>
+        </form>
+
+        {% if uploaded_url %}
+        <article>
+            <strong>Koyduk!</strong><br>
+            <a href="{{ uploaded_url }}" target="_blank">{{ uploaded_url }}</a>
+        </article>
+
+        {% endif %}
+
+        <a href="{{ url_for('main.logout') }}" role="button" class="contrast" style="margin-top: 2rem;">Çıkış Yap</a>
+        {% endif %}
+
+        <footer>
+            <small>
+                Depolama: {{ used_gb | round(2) }} GB / {{ max_gb }} GB ({{ percent_used }}%)
+            </small>
+            <progress value="{{ percent_used }}" max="100" style="width: 100%;"></progress>
+        </footer>
+    </main>
+
+</body>
+
+</html>
