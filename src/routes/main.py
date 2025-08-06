@@ -51,9 +51,13 @@ def index():
                     file.save(save_path)
 
                     if ext in {"png", "jpg", "jpeg", "gif", "webp"}:
-                        uploaded_url = url_for("serve.serve_image", filename=new_filename, _external=True)
+                        uploaded_url = url_for(
+                            "serve.serve_image", filename=new_filename, _external=True
+                        )
                     else:
-                        uploaded_url = url_for("serve.serve_file", filename=new_filename)
+                        uploaded_url = url_for(
+                            "serve.serve_file", filename=new_filename
+                        )
 
                 else:
                     flash("Geçersiz dosya türü", "error")

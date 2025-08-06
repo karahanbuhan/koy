@@ -128,7 +128,7 @@
     <small>
       Depolama: {{ used_gb | round(2) }} GB / {{ max_gb }} GB ({{ percent_used }}%)
     </small>
-    <progress value="{{ percent_used }}" max="100" style="width: 100%;"></progress>
+    <progress value="{{ percent_used | round(1) }}" max="100" style="width: 100%;"></progress>
   </footer>
 </main>
 
