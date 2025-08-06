@@ -25,7 +25,7 @@ def index():
             if username == config.USERNAME and password == config.PASSWORD:
                 session["logged_in"] = True
                 flash("Giriş başarılı", "success")
-                return redirect(url_for("main.index"))
+                return redirect("/koy")
             else:
                 flash("Hatalı giriş", "error")
         else:
