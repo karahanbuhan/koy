@@ -44,7 +44,7 @@ def index():
 
                     if total_after_upload > config.MAX_UPLOAD_FOLDER_SIZE_GB:
                         flash("Depolama alanı dolu! Yükleme iptal edildi.", "error")
-                        return redirect(url_for("main.index"))
+                        return redirect("koy")
 
                     new_filename = f"{uuid.uuid4().hex}.{ext}"
                     save_path = os.path.join(config.UPLOAD_FOLDER, new_filename)
