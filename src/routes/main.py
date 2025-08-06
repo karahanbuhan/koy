@@ -72,7 +72,7 @@ def index():
     )
 
 
-@main_bp.route("/koy/logout")
+@main_bp.route("/logout")
 def logout():
     session.pop("logged_in", None)
     flash("Çıkış yapıldı", "info")
