@@ -61,6 +61,9 @@ coverage.xml
 .pytest_cache/
 cover/
 
+# Docker compose
+docker-compose.yml
+
 # Translations
 *.mo
 *.pot

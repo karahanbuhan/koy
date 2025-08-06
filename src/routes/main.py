@@ -40,7 +40,7 @@ def index():
                     file.seek(0)
 
                     used_gb, max_gb, _ = get_storage_usage()
-                    total_after_upload = used_gb + (file_size / (1024 ** 3))
+                    total_after_upload = used_gb + (file_size / (1024**3))
 
                     if total_after_upload > config.MAX_UPLOAD_FOLDER_SIZE_GB:
                         flash("Depolama alanı dolu! Yükleme iptal edildi.", "error")
