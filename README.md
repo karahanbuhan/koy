@@ -1,75 +1,74 @@
-## 📦 KOY
+## KOY
 
-Koy is a minimal, mobile-friendly, and single-user **file upload and sharing** system.
-It supports both image and file formats, and provides clean, shareable links for each upload.
+Koy, minimal, mobil uyumlu ve tek kullanıcılı bir **dosya yükleme ve paylaşım** sistemidir. Hem görsel hem de diğer dosya formatlarını destekler ve her yükleme için temiz, paylaşılabilir bağlantılar sunar.
 
 ---
 
-### 📄 Screenshots
+### Ekran Görüntüleri
 
 ![koy](https://karahanbuhan.com/i/aa14824c1a514741b855899a0c05ec50.png)
 
 ---
 
-### ✨ Features
+### Özellikler
 
-* ✅ Mobile-friendly responsive design
-* ✅ Single-page interface (login + upload)
-* ✅ Image and file sharing via `/i/` and `/f/` links
-* ✅ Storage usage monitoring (in GB and %)
-* ✅ Optional HTTPS via Caddy reverse proxy
-* ✅ Turkish UI (buttons, labels)
-* ✅ No database required — fast and minimal
-
----
-
-### 💪 Tech Stack
-
-| Technology   | Purpose                               |
-| ------------ | ------------------------------------- |
-| **Flask**    | Backend application                   |
-| **Gunicorn** | Production WSGI server                |
-| **Docker**   | Optional containerization             |
-| **Caddy**    | Optional HTTPS-enabled reverse proxy  |
-| **pico.css** | Minimal CSS framework (modern design) |
+* Mobil uyumlu, duyarlı tasarım
+* Tek sayfalı arayüz (oturum açma + yükleme)
+* Görsel ve dosya paylaşımı için `/i/` ve `/f/` bağlantıları
+* Depolama kullanımı izleme (GB ve % cinsinden)
+* Caddy proxy sunucusu ile isteğe bağlı HTTPS
+* Türkçe arayüz (düğmeler, etiketler)
+* Veritabanı gerektirmez, dosya tabanlı — hızlı ve minimal
 
 ---
 
-### 📁 Directory Structure
+### Teknolojiler
+
+| Teknoloji    | Amaç                                  |
+|--------------|---------------------------------------|
+| **Flask**    | Arka uç uygulaması                    |
+| **Gunicorn** | Üretim WSGI sunucusu                  |
+| **Docker**   | İsteğe bağlı konteynerleştirme        |
+| **Caddy**    | İsteğe bağlı HTTPS destekli ters vekil |
+| **pico.css** | Minimal CSS çerçevesi (modern tasarım) |
+
+---
+
+### Dizin Yapısı
 
 ```
 koy/
 ├── src/
-│   ├── app.py             # Flask app definition
-│   ├── config.py          # Config via environment variables
-│   ├── routes/            # Login, upload, serve endpoints
-│   ├── templates/         # index.html (Jinja2, Turkish interface)
-│   └── static/            # pico.css and static assets
-├── uploads/               # Uploaded files
-├── Dockerfile             # Container definition
-├── README.md              # Project info
+│   ├── app.py             # Flask uygulama tanımı
+│   ├── config.py          # Çevresel değişkenlerle yapılandırma
+│   ├── routes/            # Oturum açma, yükleme, sunum uç noktaları
+│   ├── templates/         # index.html (Jinja2, Türkçe arayüz)
+│   └── static/            # pico.css ve statik varlıklar
+├── uploads/               # Yüklenen dosyalar
+├── Dockerfile             # Konteyner tanımı
+├── README.md              # Proje bilgisi
 ```
 
 ---
 
-### ⚙️ Setup
+### Kurulum
 
-#### 1. Define environment variables:
+#### 1. Environment değişkenlerini tanımlayın:
 
-Set these directly in your environment:
+Aşağıdaki değişkenleri doğrudan ortamınıza ayarlayın:
 
 ```bash
 export KOY_USERNAME=admin
-export KOY_PASSWORD=yourpassword
-export KOY_SECRET_KEY=yourlongsecretkey
-export KOY_DOMAIN=yourdomain.com
+export KOY_PASSWORD=parolanız
+export KOY_SECRET_KEY=uzungizlianahtarınız
+export KOY_DOMAIN=alanadınız.com
 export KOY_MAX_STORAGE_GB=5
 ```
 
-#### 2. Run directly:
+#### 2. Doğrudan çalıştırın:
 
 ```bash
-git clone https://github.com/yourname/koy.git
+git clone https://github.com/adınız/koy.git
 cd koy
 python3 -m venv venv
 source venv/bin/activate
@@ -77,15 +76,15 @@ pip install -r requirements.txt
 python src/app.py
 ```
 
-#### 3. Or build and run with Docker:
+#### 3. Ya da Docker ile derleyin ve çalıştırın:
 
 ```bash
 docker build -t koy .
 docker run -d --name koy \
   -e KOY_USERNAME=admin \
-  -e KOY_PASSWORD=yourpassword \
-  -e KOY_SECRET_KEY=yourlongsecretkey \
-  -e KOY_DOMAIN=yourdomain.com \
+  -e KOY_PASSWORD=parolanız \
+  -e KOY_SECRET_KEY=uzungizlianahtarınız \
+  -e KOY_DOMAIN=alanadınız.com \
   -e KOY_MAX_STORAGE_GB=5 \
   -v $(pwd)/uploads:/app/uploads \
   -p 8080:8080 koy
@@ -93,35 +92,34 @@ docker run -d --name koy \
 
 ---
 
-### 🌐 Usage
+### Kullanım
 
-* Visit your domain: `http://yourdomain.com/koy`
-* Login with your credentials
-* Upload a file
-* Get a direct link:
-
-  * Images: `http://yourdomain.com/i/filename.png`
-  * Other: `http://yourdomain.com/f/filename.pdf`
-
----
-
-### 🔐 Security
-
-* Single-user system
-* Auth credentials via environment only
-* Strong `SECRET_KEY` required
-* Optional HTTPS via Caddy + Let’s Encrypt
+1. Alan adınızı ziyaret edin: `http://alanadınız.com/koy`
+2. Kimlik bilgilerinizle oturum açın
+3. Bir dosya yükleyin
+4. Doğrudan bağlantı alın:
+  * Görseller: `http://alanadınız.com/i/dosyaadı.png`
+  * Diğer: `http://alanadınız.com/f/dosyaadı.pdf`
 
 ---
 
-### 📌 Notes
+### Güvenlik
 
-* Files are stored in `uploads/` — no database used
-* Turkish interface throughout
-* Optional: add favicon, robots.txt, access logs, etc.
+* Tek kullanıcılı sistem
+* Kimlik doğrulama bilgileri yalnızca çevresel değişkenler üzerinden
+* Güçlü bir `SECRET_KEY` gereklidir
+* HTTPS (Caddy + Let’s Encrypt ile)
+* **Uyarı:** Kimlik doğrulama sistemi, yanlış girişlerde bekleme süresi (cooldown) gibi ek güvenlik önlemleri içermediğinden aşırı güvenli değildir. İş amaçlı kullanım için önerilmez.
 
 ---
 
-### License
+### Notlar
 
-[MIT License](https://opensource.org/licenses/MIT)
+* Dosyalar `uploads/` dizininde saklanır — veritabanı kullanılmaz
+* İsteğe bağlı: favicon, robots.txt, erişim günlükleri vb. eklenebilir
+
+---
+
+### Lisans
+
+[MIT Lisansı](https://opensource.org/licenses/MIT)
