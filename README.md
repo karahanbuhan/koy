@@ -6,7 +6,7 @@ Koy, minimal, mobil uyumlu ve tek kullanıcılı bir **dosya yükleme ve paylaş
 
 ### Ekran Görüntüleri
 
-![koy](https://karahanbuhan.com/i/aa14824c1a514741b855899a0c05ec50.png)
+<img width="2170" height="1308" alt="image" src="https://github.com/user-attachments/assets/75444865-2fe6-470f-8b45-e3fe20ac59c4" />
 
 ---
 
